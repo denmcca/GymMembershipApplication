@@ -1,0 +1,96 @@
+﻿<Window x:Class="MembershipDemoMVVM.View.ChangeMembershipView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MembershipDemoMVVM.View"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Change}"
+        mc:Ignorable="d"
+        d:DesignHeight="500" d:DesignWidth="350"
+        Height="500" Width="350"
+        Background="AliceBlue"
+        Name="ChangeView"
+        Title="Update Membership">
+    <!--Above: DataContext binds to Locator and directs to Change method
+    Name is used for IClosable-->
+    
+    <!--Base grid-->
+    <Grid>
+        <!--Grid for textboxes and labels-->
+        <Grid>
+            <!--Rows for textboxes and respective labels-->
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--Colums for label space (left) and textbox space (right)-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!--First name label-->
+            <Label Grid.Row="0" Grid.Column="0"
+                   Content="First Name: "
+                   Style="{StaticResource labelStyleChange}" />
+            
+            <!--First name textbox-->
+            <TextBox Grid.Row="0" Grid.Column="1" 
+                     Text="{Binding Membership.FirstName, Mode=TwoWay}"                  
+                     Style="{StaticResource textBoxStyleChange}" />
+
+            <!--Last name label-->
+            <Label Grid.Row="1" Grid.Column="0"
+                   Content="Last Name: "
+                   Style="{StaticResource labelStyleChange}" />
+            
+            <!--Last name textbox-->
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     Text="{Binding Membership.LastName, Mode=TwoWay}"
+                     Style="{StaticResource textBoxStyleChange}" />
+
+            <!--E-mail label-->
+            <Label Grid.Row="2" Grid.Column="0" 
+                   Content="E-mail: "
+                   Style="{StaticResource labelStyleChange}" />
+            
+            <!--E-mail textbox-->
+            <TextBox Grid.Row="2" Grid.Column="1" 
+                     Text="{Binding Membership.Email, Mode=TwoWay}"
+                     Style="{StaticResource textBoxStyleChange}" />
+        </Grid>
+        
+        <!--Overlapping grid for button columns-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!--Delete button-->
+            <Button Grid.Row="4" Grid.Column="0" 
+                    Content="Delete" 
+                    Command="{Binding DeleteCommand}"                    
+                    CommandParameter="{Binding ElementName=ChangeView}"
+                    Style="{StaticResource buttonStyleChange}" />
+
+            <!--Cancel button-->
+            <Button Grid.Row="4" Grid.Column="1"
+                    Content="Cancel"                  
+                    Command="{Binding CancelCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=ChangeView}"
+                    Style="{StaticResource buttonStyleChange}" />
+
+            <!--Update button-->
+            <Button Grid.Row="4" Grid.Column="2" 
+                    Content="Update" 
+                    Command="{Binding SaveCommand}"
+                    CommandParameter="{Binding ElementName=ChangeView}"
+                    Style="{StaticResource buttonStyleChange}" />
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,78 @@
+<Application x:Class="MembershipDemoMVVM.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="clr-namespace:MembershipDemoMVVM" 
+             StartupUri="./View/MembershipMaintenanceView.xaml" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             d1p1:Ignorable="d" 
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  
+    <Application.Resources>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:MembershipDemoMVVM.ViewModel" />
+
+            <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
+                <Setter Property="Width" Value="75" />
+                <Setter Property="Height" Value="20" />
+                <Setter Property="Margin" Value="10,0,10,10" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="buttonStyleChange" TargetType="{x:Type Button}">
+                <Setter Property="Width" Value="75" />
+                <Setter Property="Height" Value="20" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="Margin" Value="10,10,10,30" />
+            </Style>
+            
+            <Style x:Key="labelStyleChange" TargetType="{x:Type Label}">
+                <Setter Property="Margin" Value="5,20,0,20" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Right" />
+                <Setter Property="Width" Value="75" />
+            </Style>
+
+            <Style x:Key="textBoxStyleChange" TargetType="{x:Type TextBox}">
+                <Setter Property="Width" Value="225" />
+                <Setter Property="MinWidth" Value="50" />
+                <Setter Property="MaxWidth" Value="225" />
+                <Setter Property="MaxHeight" Value="25" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="Margin" Value="0,20,0,20" />
+                <Setter Property="MaxLength" Value="25" />
+                <Setter Property="Cursor" Value="IBeam" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+
+            <Style x:Key="labelStyleListBoxHeader" TargetType="{x:Type Label}">
+                <Setter Property="FontWeight" Value="ExtraBold" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="Foreground" Value="CornflowerBlue" />
+            </Style>
+
+            <Style x:Key="labelStyleListBox" TargetType="{x:Type Label}">
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="Width" Value="210" />
+                <Setter Property="FontSize" Value="10" />
+            </Style>
+
+            <DataTemplate x:Key="MembershipListTemplate">
+                <StackPanel Orientation = "Horizontal">
+                    <Label Content="{Binding Path=FirstName, Mode=TwoWay}"
+                           Style="{StaticResource labelStyleListBox}"
+                           />
+                    <Label Content="{Binding Path=LastName, Mode=TwoWay}"
+                           Style="{StaticResource labelStyleListBox}"/>
+                    <Label Content="{Binding Path=Email, Mode=TwoWay}"
+                           Style="{StaticResource labelStyleListBox}"/>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

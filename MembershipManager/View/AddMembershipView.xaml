@@ -1,0 +1,89 @@
+﻿<Window x:Class="MembershipDemoMVVM.View.AddMembershipView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MembershipDemoMVVM.View"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Add}"
+        mc:Ignorable="d"
+        d:DesignHeight="500" d:DesignWidth="350"
+        Height="500" Width="350"
+        Background="AliceBlue"
+        Name="AddView"
+        Title="Add Membership">
+    <!--Above: DataContext binds to Locator and directs to Add method
+    Name is used for IClosable-->
+    
+    <!--Base grid - background-->
+    <Grid>
+        
+        <!--Rows and columns for textboxes and labels-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!--First name label-->
+            <Label Grid.Row="0" Grid.Column="0" 
+                   Content="First Name: "
+                   Style="{StaticResource labelStyleChange}" />
+
+            <!--First name textbox-->
+            <TextBox Grid.Row="0" Grid.Column="1"
+                     Text="{Binding Membership.FirstName, Mode=TwoWay}"
+                     Style="{StaticResource textBoxStyleChange}" />
+            
+            <!--Last name label-->
+            <Label Grid.Row="1" Grid.Column="0"
+                   Content="Last Name: "
+                   Style="{StaticResource labelStyleChange}" />
+
+            <!--Last name textbox-->
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     Text="{Binding Membership.LastName, Mode=TwoWay}"
+                     Style="{StaticResource textBoxStyleChange}" />
+
+            <!--E-mail label-->
+            <Label Grid.Row="2" Grid.Column="0" 
+                   Content="E-mail: "
+                   Style="{StaticResource labelStyleChange}" />
+
+            <!--E-mail textbox-->
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     Text="{Binding Membership.Email, Mode=TwoWay}"
+                     Style="{StaticResource textBoxStyleChange}" />
+
+        </Grid>
+        
+        <!--Overlapping columns-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--Cancel button-->
+            <Button Grid.Row="4" Grid.Column="0"
+                    Content="Cancel"
+                    Command="{Binding CancelCommand}"
+                    CommandParameter="{Binding ElementName=AddView}"
+                    Style="{StaticResource buttonStyleChange}" />
+
+            <!--Confirm button-->
+            <Button Grid.Row="4" Grid.Column="1" 
+                    Content="Confirm" 
+                    Command="{Binding SaveCommand}"
+                    CommandParameter="{Binding ElementName=AddView}"
+                    Style="{StaticResource buttonStyleChange}" />
+        </Grid>
+    </Grid>
+</Window>
+

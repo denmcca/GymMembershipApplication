@@ -1,0 +1,12 @@
+a
+b
+a@b.cd
+Test
+Tester
+test@tester.com
+Somebody
+Else
+somebody@else.net
+This
+One
+guy@toldme.com
